@@ -1,0 +1,14 @@
+I want to create a game,
+it will be on the chemistry laboratory assessment of salt analysis,
+I am not sure how should i go about it, help me figure it out,
+the salt analysis was a big part of my grade in 12th grade so the market for this game might be there.
+I have realised a bit of concept but i am flexible on changing it,
+The story goes similar to the "Harry Potter and the Half-blood Prince", 
+harry finds the textbook which belongs to the half blood prince and 
+he was able to excel at his potions class, 
+in the same way i am thinking of naming the game "The Barely Passing Manual by the Anti-Chemist"
+during my time in 12 th grade i was disintersted and annoyed by chemistry lab class
+as it came between my prep for entrance exams, 
+but i was able to build a system of flow chart to get through the salt analysis,
+instead of relying on the lab manual which was written in a procedure for each salt.
+I am also want to explore if it can be made into daily game like wordle. 
