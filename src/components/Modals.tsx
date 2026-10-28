@@ -2,8 +2,10 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { saltById } from '../chem/salts';
 import { MAX_STRIKES, grid, type GameState } from '../engine/game';
 import { msUntilTomorrow } from '../engine/daily';
+import { teacherLine } from '../engine/lines';
 import { scoreLabel, share, shareText } from '../engine/share';
 import type { Stats } from '../engine/storage';
+import { SQUARE_TONE } from '../engine/view';
 import { Teacher } from './Teacher';
 
 function Modal({ title, onClose, children }: { title: string; onClose: () => void; children: ReactNode }) {
@@ -15,58 +17,19 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
   return (
     <div className="modal-back" onClick={onClose}>
       <div className="modal" role="dialog" aria-modal aria-label={title} onClick={(e) => e.stopPropagation()}>
-        <button className="close" onClick={onClose} aria-label="Close">
-          ✕
-        </button>
-        <h2 className="marker">{title}</h2>
+        <div className="modal-head">
+          <h2 className="marker">{title}</h2>
+          <button className="close" onClick={onClose} aria-label="Close">
+            ✕
+          </button>
+        </div>
         {children}
       </div>
     </div>
   );
 }
 
-export function HelpModal({ onClose }: { onClose: () => void }) {
-  return (
-    <Modal title="Page 1 of the Manual" onClose={onClose}>
-      <div className="manual-page">
-        <p className="scrawl">Property of the Anti-Chemist. If found, keep it. You need it more than I do.</p>
-        <ol>
-          <li>
-            You get an <b>unknown salt</b>. Find its <b>anion</b> and <b>cation</b>, then write its <b>formula</b>.
-          </li>
-          <li>
-            Pick the tests <b>in the right order</b>. Preliminary → anion → cation, group by group. Skip a step and Ma’am
-            will notice.
-          </li>
-          <li>
-            After every test, write what you <b>observe</b> and what you <b>infer</b>. Just like the real answer sheet.
-          </li>
-          <li>
-            Got a result? <b>Confirm it</b> with the right confirmatory test before moving on.
-          </li>
-          <li>
-            Every mistake is a <b>strike</b>. Six strikes and you’re thrown out of the lab.
-          </li>
-          <li>
-            Stuck? Ask me. Free in practice. In the daily salt it costs a strike.
-          </li>
-        </ol>
-        <div className="legend">
-          <span>⬜ nothing there</span>
-          <span>🟩 found / confirmed</span>
-          <span>🟨 used a tip</span>
-          <span>🟥 strike</span>
-        </div>
-        <p className="scrawl">A new salt every day, the same for everyone. Want to test your salt analysis?</p>
-      </div>
-      <button className="btn primary wide" onClick={onClose}>
-        Open the lab
-      </button>
-    </Modal>
-  );
-}
-
-function Countdown() {
+export function Countdown() {
   const [ms, setMs] = useState(msUntilTomorrow);
   useEffect(() => {
     const t = setInterval(() => setMs(msUntilTomorrow()), 1000);
@@ -83,39 +46,39 @@ function Countdown() {
   );
 }
 
-export function StatsBlock({ stats }: { stats: Stats }) {
-  const max = Math.max(1, ...stats.dist);
+export function StatRow({ stats }: { stats: Stats }) {
   const winPct = stats.played ? Math.round((stats.won / stats.played) * 100) : 0;
+  const items: [number, string][] = [
+    [stats.played, 'Played'],
+    [winPct, 'Win %'],
+    [stats.streak, 'Streak'],
+    [stats.maxStreak, 'Best'],
+  ];
   return (
-    <div className="stats">
-      <div className="stat-row">
-        <div>
-          <b>{stats.played}</b>
-          <span>Played</span>
+    <div className="stat-row">
+      {items.map(([v, l]) => (
+        <div key={l}>
+          <b>{v}</b>
+          <span>{l}</span>
         </div>
-        <div>
-          <b>{winPct}</b>
-          <span>Win %</span>
-        </div>
-        <div>
-          <b>{stats.streak}</b>
-          <span>Streak</span>
-        </div>
-        <div>
-          <b>{stats.maxStreak}</b>
-          <span>Best</span>
-        </div>
-      </div>
-      <div className="dist">
-        {stats.dist.map((v, i) => (
-          <div key={i} className="dist-row">
-            <span>{i === MAX_STRIKES ? 'X' : i}</span>
-            <div className="bar" style={{ width: `${Math.max(8, (v / max) * 100)}%` }}>
-              {v}
-            </div>
+      ))}
+    </div>
+  );
+}
+
+/** Strikes-per-solve bars. `mine` highlights today's result. */
+function Distribution({ stats, mine }: { stats: Stats; mine?: number }) {
+  const max = Math.max(1, ...stats.dist);
+  return (
+    <div className="dist">
+      {stats.dist.map((v, i) => (
+        <div key={i} className="dist-row">
+          <span>{i === MAX_STRIKES ? 'X' : i}</span>
+          <div className={`bar ${i === mine ? 'me' : ''}`} style={{ width: `${Math.max(8, (v / max) * 100)}%` }}>
+            {v}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
       <p className="dist-note">Strikes used per solved salt</p>
     </div>
   );
@@ -137,8 +100,9 @@ export function ResultModal({
   const [shared, setShared] = useState<string | null>(null);
   const salt = saltById(game.saltId);
   const won = game.status === 'won';
-  const mood = !won ? 'shouting' : game.strikes === 0 ? 'grudging' : game.strikes <= 3 ? 'stern' : 'facepalm';
+  const line = teacherLine(game);
   const url = `${location.origin}${location.pathname}`;
+  const mine = won ? Math.min(game.strikes, MAX_STRIKES - 1) : MAX_STRIKES;
 
   const doShare = async () => {
     const r = await share(shareText(game, puzzle, url));
@@ -147,31 +111,47 @@ export function ResultModal({
 
   return (
     <Modal title={won ? 'Salt identified!' : 'Thrown out of the lab!'} onClose={onClose}>
-      <div className="result-head">
-        <Teacher mood={mood} className="result-teacher" />
-        <div>
-          <div className="big-score">{scoreLabel(game)}</div>
-          <div>
-            {salt.name} <b>{salt.formula}</b>
-          </div>
-          {puzzle && <div className="muted">The Anti-Chemist #{puzzle}</div>}
+      <div className="share-card">
+        <span className="pitch">Want to test your salt analysis?</span>
+        <div className="share-title">
+          <b>{puzzle ? `The Anti-Chemist #${puzzle}` : 'The Anti-Chemist (practice)'}</b>
+          <span className="marker score">{scoreLabel(game)}</span>
         </div>
+        <div className="share-grid">
+          {grid(game).map((l) => (
+            <div key={l.label}>
+              <span className="lbl">{l.label}</span>
+              {l.squares.map((sq, i) => (
+                <span key={i} className={`mini tone-${SQUARE_TONE[sq]}`} style={{ animationDelay: `${0.15 + i * 0.08}s` }} />
+              ))}
+            </div>
+          ))}
+        </div>
+        <span className="pitch">
+          {stats && stats.streak > 0 ? `${stats.streak}-day streak · ` : ''}no spoilers in the card
+        </span>
       </div>
-      <div className="grid">
-        {grid(game).map((l) => (
-          <div key={l.label}>
-            <span className="grid-label">{l.label}</span> {l.squares.join('')}
-          </div>
-        ))}
-      </div>
-      <button className="btn primary wide" onClick={doShare}>
+      <button className="btn round red" onClick={doShare}>
         Share result
       </button>
       {shared && <p className="muted center">{shared}</p>}
-      {stats && <StatsBlock stats={stats} />}
+      <div className="verdict">
+        <div className="avatar">
+          <Teacher mood={line.mood} avatar />
+        </div>
+        <span>
+          “{line.text}” It was {salt.name}, <b>{salt.formula}</b>.
+        </span>
+      </div>
+      {stats && (
+        <>
+          <StatRow stats={stats} />
+          <Distribution stats={stats} mine={mine} />
+        </>
+      )}
       {puzzle && <Countdown />}
       {onNewSalt && (
-        <button className="btn wide" onClick={onNewSalt}>
+        <button className="btn round" onClick={onNewSalt}>
           Try another salt
         </button>
       )}
@@ -182,7 +162,8 @@ export function ResultModal({
 export function StatsModal({ stats, onClose }: { stats: Stats; onClose: () => void }) {
   return (
     <Modal title="Your record" onClose={onClose}>
-      <StatsBlock stats={stats} />
+      <StatRow stats={stats} />
+      <Distribution stats={stats} />
       <Countdown />
     </Modal>
   );

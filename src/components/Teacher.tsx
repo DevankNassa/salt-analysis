@@ -124,11 +124,12 @@ function Glasses({ mood }: { mood: TeacherMood }) {
   );
 }
 
-export function Teacher({ mood, className }: { mood: TeacherMood; className?: string }) {
+/** avatar: head and shoulders only, for the small speaker icons next to her lines. */
+export function Teacher({ mood, className, avatar }: { mood: TeacherMood; className?: string; avatar?: boolean }) {
   const sweaty = mood === 'flustered' || mood === 'shocked' || mood === 'facepalm';
   const blush = mood === 'flustered' || mood === 'shouting' || mood === 'grudging';
   return (
-    <svg viewBox="0 0 200 250" className={className} role="img" aria-label={`Ma'am looks ${mood}`}>
+    <svg viewBox={avatar ? '22 0 156 176' : '0 0 200 250'} className={className} role="img" aria-label={`Ma'am looks ${mood}`}>
       <g className={`teacher teacher-${mood}`}>
         {/* coat + kurta */}
         <path d="M30 250 Q34 186 72 172 L128 172 Q166 186 170 250 Z" fill="#fdfdfb" stroke={INK} strokeWidth={3.5} />
@@ -137,7 +138,7 @@ export function Teacher({ mood, className }: { mood: TeacherMood; className?: st
         <rect x={136} y={206} width={16} height={4} fill="#3a6fd9" transform="rotate(-8 144 208)" />
 
         {/* clipboard + hands */}
-        {mood !== 'facepalm' && (
+        {!avatar && mood !== 'facepalm' && (
           <g transform="rotate(-6 100 222)">
             <rect x={70} y={200} width={60} height={50} rx={4} fill="#b07a45" stroke={INK} strokeWidth={3} />
             <rect x={76} y={208} width={48} height={42} fill="#fffdf4" stroke={INK} strokeWidth={2} />

@@ -5,9 +5,9 @@ export type AntiChemistPose = 'lurking' | 'writing' | 'pointing';
 const NAVY = '#1c2340';
 const SHADOW = '#0c0f1e';
 
-export function AntiChemist({ pose, className }: { pose: AntiChemistPose; className?: string }) {
+export function AntiChemist({ pose, className, avatar }: { pose: AntiChemistPose; className?: string; avatar?: boolean }) {
   return (
-    <svg viewBox="0 0 160 190" className={className} role="img" aria-label="The Anti-Chemist">
+    <svg viewBox={avatar ? '16 10 128 132' : '0 0 160 190'} className={className} role="img" aria-label="The Anti-Chemist">
       <g className={`ac ac-${pose}`}>
         {/* body */}
         <path d="M18 190 Q22 132 80 124 Q138 132 142 190 Z" fill={NAVY} stroke="#000" strokeWidth={3} />
@@ -26,14 +26,14 @@ export function AntiChemist({ pose, className }: { pose: AntiChemistPose; classN
         {/* a hint of a smirk */}
         <path d="M70 110 Q82 116 92 108" stroke="#5b6aa8" strokeWidth={2.5} fill="none" strokeLinecap="round" />
 
-        {pose === 'writing' && (
+        {!avatar && pose === 'writing' && (
           <g className="ac-hand">
             <ellipse cx={118} cy={160} rx={12} ry={10} fill="#d9b08c" stroke="#000" strokeWidth={2.5} />
             <path d="M120 156 L146 128" stroke="#222" strokeWidth={5} strokeLinecap="round" />
             <path d="M146 128 L150 124" stroke="#c0392b" strokeWidth={5} strokeLinecap="round" />
           </g>
         )}
-        {pose === 'pointing' && (
+        {!avatar && pose === 'pointing' && (
           <g className="ac-hand">
             <path d="M110 150 Q130 140 150 120" stroke={NAVY} strokeWidth={14} strokeLinecap="round" fill="none" />
             <ellipse cx={150} cy={118} rx={8} ry={7} fill="#d9b08c" stroke="#000" strokeWidth={2.5} />
