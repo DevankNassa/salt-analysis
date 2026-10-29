@@ -10,6 +10,7 @@ export function Home({
   onDaily,
   onPractice,
   onManual,
+  onFeedback,
 }: {
   puzzle: number;
   daily: GameState;
@@ -17,6 +18,7 @@ export function Home({
   onDaily: () => void;
   onPractice: () => void;
   onManual: () => void;
+  onFeedback: () => void;
 }) {
   const started = daily.rows.length > 0;
   const dailyLabel =
@@ -43,6 +45,9 @@ export function Home({
       </div>
       <StatRow stats={stats} />
       <Countdown />
+      <button className="link feedback-link" onClick={onFeedback}>
+        Found a mistake or want a change? Send feedback
+      </button>
     </div>
   );
 }

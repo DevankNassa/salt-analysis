@@ -26,6 +26,7 @@ export interface GameProps {
   onHome: () => void;
   onManual: () => void;
   onStats: () => void;
+  onFeedback: () => void;
   onShowResult: () => void;
 }
 
@@ -249,7 +250,7 @@ function Keyboard({ game, dispatch, onNewSalt, onShowResult, onHome }: Pick<Game
 /* ───── desktop board (1b) ───── */
 
 export function GameBoard(props: GameProps) {
-  const { game, puzzle, onMode, onNewSalt, onHome, onManual, onStats } = props;
+  const { game, puzzle, onMode, onNewSalt, onHome, onManual, onStats, onFeedback } = props;
   const row = activeRow(game);
   return (
     <div className="board-page">
@@ -274,6 +275,9 @@ export function GameBoard(props: GameProps) {
         <div className="head-right">
           <button className="pill square" onClick={onManual} aria-label="How to play">
             ?
+          </button>
+          <button className="pill" onClick={onFeedback}>
+            Feedback
           </button>
           <button className="pill" onClick={onStats}>
             Stats
@@ -316,7 +320,7 @@ export function GameBoard(props: GameProps) {
 /* ───── phone flow (2b) ───── */
 
 export function GamePhone(props: GameProps) {
-  const { game, puzzle, onNewSalt, onHome, onManual, onStats } = props;
+  const { game, puzzle, onNewSalt, onHome, onManual, onStats, onFeedback } = props;
   const [showAll, setShowAll] = useState(false);
   const row = activeRow(game);
   const showLens = !!row || game.rows.length === 0;
@@ -332,6 +336,9 @@ export function GamePhone(props: GameProps) {
           </button>
           <button onClick={onManual} aria-label="How to play">
             ?
+          </button>
+          <button onClick={onFeedback} aria-label="Send feedback" title="Send feedback">
+            ✉
           </button>
         </div>
         <span className="marker">{game.mode === 'daily' ? `Daily salt #${puzzle}` : 'Practice lab'}</span>

@@ -31,3 +31,10 @@ To fix a chemistry mistake, edit `src/chem/procedure.ts` and run `npm test`.
 
 Push to GitHub, then in the repo go to **Settings → Pages → Source: GitHub Actions**.
 `.github/workflows/deploy.yml` tests, builds and publishes on every push to `main`/`master`.
+
+### Feedback form
+
+The in-game feedback form sends submissions to your email through [Web3Forms](https://web3forms.com) (free, no backend).
+Get an access key there with your email, then add it in the repo under
+**Settings → Secrets and variables → Actions → Variables** as `WEB3FORMS_KEY`, and re-run the deploy.
+For local dev, put `VITE_WEB3FORMS_KEY=...` in `.env.local`. Without a key the form shows but can't send.

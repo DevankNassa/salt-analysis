@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from '
 import { GameBoard, GamePhone, type GameProps } from './components/Game';
 import { Home } from './components/Home';
 import { Manual } from './components/Manual';
-import { ResultModal, StatsModal } from './components/Modals';
+import { FeedbackModal, ResultModal, StatsModal } from './components/Modals';
 import { dailySaltId, dayNumber, pool } from './engine/daily';
 import { newGame, reduce, type Action, type GameState, type Mode } from './engine/game';
 import {
@@ -17,7 +17,7 @@ import {
 } from './engine/storage';
 
 type Screen = 'home' | 'manual' | 'game';
-type ModalKind = 'result' | 'stats' | null;
+type ModalKind = 'result' | 'stats' | 'feedback' | null;
 
 function randomPracticeSalt(exclude?: string): string {
   const salts = pool('cbse').filter((s) => s.id !== exclude);
@@ -104,6 +104,7 @@ export function App() {
     onHome: () => setScreen('home'),
     onManual: () => openManual('game'),
     onStats: () => setModal('stats'),
+    onFeedback: () => setModal('feedback'),
     onShowResult: () => setModal('result'),
   };
 
@@ -117,6 +118,7 @@ export function App() {
           onDaily={() => play('daily')}
           onPractice={() => play('practice')}
           onManual={() => openManual('home')}
+          onFeedback={() => setModal('feedback')}
         />
       )}
       {screen === 'manual' && (
@@ -132,6 +134,13 @@ export function App() {
         </div>
       )}
 
+      {modal === 'feedback' && (
+        <FeedbackModal
+          game={screen === 'game' ? game : null}
+          puzzle={mode === 'daily' ? today : null}
+          onClose={() => setModal(null)}
+        />
+      )}
       {modal === 'stats' && <StatsModal stats={stats} onClose={() => setModal(null)} />}
       {modal === 'result' && screen === 'game' && game.status !== 'playing' && (
         <ResultModal

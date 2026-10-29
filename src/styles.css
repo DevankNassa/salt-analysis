@@ -1761,3 +1761,79 @@ button:focus-visible {
     animation: none !important;
   }
 }
+
+/* ───── feedback ───── */
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feedback-kind {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.feedback label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 700;
+}
+
+.feedback textarea,
+.feedback input:not([type='checkbox']) {
+  font: inherit;
+  font-weight: 400;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 8px 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.feedback textarea {
+  resize: vertical;
+}
+
+.feedback .feedback-check {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  font-weight: 400;
+}
+
+.feedback-check input {
+  margin-top: 5px;
+  accent-color: var(--ink);
+}
+
+.feedback-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.app.narrow .feedback-row {
+  grid-template-columns: 1fr;
+}
+
+.feedback .honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+
+.feedback-error {
+  color: var(--red);
+  margin: 0;
+}
+
+.feedback-link {
+  margin-top: -4px;
+  text-decoration: underline;
+}
