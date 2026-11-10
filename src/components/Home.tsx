@@ -42,9 +42,26 @@ export function Home({
           <span className="book-icon" aria-hidden />
           How to play: open the manual
         </button>
-        <a className="btn round" href="./salt-chart.html" target="_blank" rel="noopener">
-          Study the salt chart
-        </a>
+        <div className="chart-callout">
+          <a className="btn round" href="./salt-chart.html" target="_blank" rel="noopener">
+            Study the salt chart
+          </a>
+          <span className="pencil-note">
+            <svg className="pencil-arrow" viewBox="0 0 64 46" aria-hidden>
+              <defs>
+                <filter id="graphite">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" />
+                  <feDisplacementMap in="SourceGraphic" scale="1.6" />
+                </filter>
+              </defs>
+              <g filter="url(#graphite)">
+                <path d="M60 40 C 44 42, 20 36, 13 7" />
+                <path d="M4 15 L 13 5 L 21 14" />
+              </g>
+            </svg>
+            you can practice here first
+          </span>
+        </div>
       </div>
       <StatRow stats={stats} />
       <Countdown />

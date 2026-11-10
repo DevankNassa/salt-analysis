@@ -204,6 +204,34 @@ a.btn:focus-visible,
   width: 100%;
 }
 
+/* Pencil scribble pointing at the salt chart button. */
+.chart-callout {
+  display: flex;
+  flex-direction: column;
+}
+
+.pencil-note {
+  align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  margin: -2px 14px 0 0;
+  color: #5a5753;
+  font-size: 1rem;
+  transform: rotate(-3deg);
+}
+
+.pencil-arrow {
+  width: 46px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
 .manual-btn {
   min-height: 44px !important;
   background: var(--sticky);
