@@ -42,6 +42,9 @@ export function Home({
           <span className="book-icon" aria-hidden />
           How to play: open the manual
         </button>
+        <a className="btn round" href="./salt-chart.html" target="_blank" rel="noopener">
+          Study the salt chart
+        </a>
       </div>
       <StatRow stats={stats} />
       <Countdown />
