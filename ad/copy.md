@@ -14,6 +14,17 @@ Drafts. Change the wording for each place you post it (see the Reddit rules in t
 > Free daily puzzle to practise salt analysis before your practical: one unknown salt a day, tests in the
 > real order. https://www.devank.dev/chemistry-game/
 
+## WhatsApp, for friends
+
+Send the video first, then this as its own message (WhatsApp shows the link preview better that way).
+
+> Made a small thing 🧪 *The Barely Passing Manual*: a daily puzzle for the Class 12 chemistry practical
+> (salt analysis). You get one unknown salt and have to run the tests in the right order, or Ma'am
+> yells at you.
+>
+> Try today's salt and tell me your score 😄 And if you know anyone in Class 11/12, please forward it to them.
+> https://www.devank.dev/chemistry-game/
+
 ## r/12tards
 
 **Title:** I made a free daily salt analysis puzzle for the chem practical
