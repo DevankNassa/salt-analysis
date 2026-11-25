@@ -170,10 +170,10 @@ function EndScene({ pitch, url }: { pitch: string; url: string }) {
       <div className="ad-end" style={{ paddingBottom: 170 }}>
         <LogoTiles />
         <h1 className="marker" style={pop(title)}>
-          The Barely Passing Manual
+          Saltdle
         </h1>
         <span className="byline" style={pop(title)}>
-          by the Anti-Chemist
+          The Barely Passing Manual, by the Anti-Chemist
         </span>
         <div className="ad-url" style={{ ...pop(note, 30), transform: `rotate(-2deg) scale(${interpolate(note, [0, 1], [0.7, 1])})` }}>
           {url.replace('/', '/\n')}

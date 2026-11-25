@@ -4,21 +4,21 @@ Drafts. Change the wording for each place you post it (see the Reddit rules in t
 
 ## Private check with one teacher friend (send this first)
 
-> Hey! I made a small daily puzzle for the Class 12 salt analysis practical: you get an unknown salt and
+> Hey! I made Saltdle, a small daily puzzle for the Class 12 salt analysis practical: you get an unknown salt and
 > run the tests in the proper order, like the real practical. Could you try one and tell me if any
 > observation or inference is wrong? I'd rather hear it from you than from a student 😅
 > https://www.devank.dev/chemistry-game/
 
 ## For teachers to forward to their students
 
-> Free daily puzzle to practise salt analysis before your practical: one unknown salt a day, tests in the
+> Saltdle: a free daily puzzle to practise salt analysis before your practical: one unknown salt a day, tests in the
 > real order. https://www.devank.dev/chemistry-game/
 
 ## WhatsApp, for friends
 
 Send the video first, then this as its own message (WhatsApp shows the link preview better that way).
 
-> Made a small thing 🧪 *The Barely Passing Manual*: a daily puzzle for the Class 12 chemistry practical
+> Made a small thing 🧪 *Saltdle*: a daily puzzle for the Class 12 chemistry practical
 > (salt analysis). You get one unknown salt and have to run the tests in the right order, or Ma'am
 > yells at you.
 >
@@ -27,11 +27,11 @@ Send the video first, then this as its own message (WhatsApp shows the link prev
 
 ## r/12tards
 
-**Title:** I made a free daily salt analysis puzzle for the chem practical
+**Title:** I made Saltdle, a free daily salt analysis puzzle for the chem practical
 
 **Body:**
 
-> Salt analysis was the part of the practical I could never remember, so I made a small daily puzzle for it.
+> Salt analysis was the part of the practical I could never remember, so I made Saltdle, a small daily puzzle for it.
 > You get one unknown salt, run the tests in the proper order (prelim → anion → cation), pick the
 > observation and inference for each, and name the salt. Skip a group and Ma'am yells at you.
 >
