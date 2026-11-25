@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import {
   MAX_STRIKES,
   canHint,
@@ -104,15 +104,11 @@ function TeacherSays({ game, withNext }: { game: GameState; withNext?: boolean }
 }
 
 function ACNote({ game, fallback }: { game: GameState; fallback?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
   const note = game.hint ?? lastNote(game) ?? fallback;
-  // A tip can land below the fold on a phone; bring it into view.
-  useEffect(() => {
-    if (game.hint) ref.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-  }, [game.hint]);
   if (!note) return null;
+  // On a phone the note is pinned to the bottom of the scroll area (CSS), so it is always in view.
   return (
-    <div className={`ac-note ${game.hint ? 'hint' : ''}`} key={note} ref={ref}>
+    <div className={`ac-note ${game.hint ? 'hint' : ''}`} key={note}>
       <div className="avatar">
         <AntiChemist pose="lurking" avatar />
       </div>
