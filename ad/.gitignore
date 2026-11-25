@@ -1,0 +1,7 @@
+node_modules
+out
+private
+# music and voice files stay out of git
+*.mp3
+*.wav
+*.m4a

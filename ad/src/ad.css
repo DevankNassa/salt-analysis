@@ -1,0 +1,191 @@
+/* Ad-only styles. The game's own stylesheet is imported as-is; this file only
+   (1) styles the ad's canvas, captions, phone frame and end card, and
+   (2) makes the game's phone screens fit a fixed-size phone instead of the browser window. */
+
+.ad-canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: #fffdf6;
+  /* notebook paper: faint blue rules and a red margin line */
+  background-image:
+    linear-gradient(90deg, transparent 46px, rgba(208, 49, 45, 0.35) 46px, rgba(208, 49, 45, 0.35) 48px, transparent 48px),
+    repeating-linear-gradient(180deg, transparent 0 31px, rgba(42, 82, 190, 0.13) 31px 32px);
+  font-family: 'Kalam', 'Comic Sans MS', cursive;
+  color: var(--ink);
+}
+
+/* ───── captions ───── */
+
+.ad-caption {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  font-family: 'Permanent Marker', cursive;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.12;
+  letter-spacing: 0.3px;
+}
+
+.ad-caption .red {
+  color: var(--red);
+}
+
+.ad-caption.small {
+  font-size: 34px;
+}
+
+/* ───── phone ───── */
+
+.ad-phone {
+  position: absolute;
+  border: 9px solid #1f1a17;
+  border-radius: 46px;
+  background: #1f1a17;
+  box-shadow:
+    0 22px 40px -18px rgba(31, 26, 23, 0.55),
+    0 0 0 2px rgba(31, 26, 23, 0.15);
+  overflow: hidden;
+}
+
+.ad-phone-inner {
+  transform-origin: 0 0;
+  border-radius: 37px;
+  overflow: hidden;
+}
+
+/* The game sizes its phone screens with dvh units (the browser window). Here the "window" is the phone. */
+.ad-screen {
+  position: relative;
+  overflow: hidden;
+  background: var(--board);
+  height: var(--screen-h);
+}
+
+.ad-screen .app,
+.ad-screen .game-wrap {
+  height: 100%;
+}
+
+.ad-screen .home,
+.ad-screen .phone-page {
+  height: 100%;
+  min-height: 0;
+}
+
+.ad-screen .phone-body .lens-stage {
+  height: calc(var(--screen-h) * 0.32);
+}
+
+.ad-screen .phone-page .keyboard {
+  max-height: calc(var(--screen-h) * 0.52);
+}
+
+.ad-screen .modal-back {
+  position: absolute;
+}
+
+.ad-screen .app.narrow .modal {
+  height: 100%;
+}
+
+/* A live clock would flicker between frames (frames render out of order). */
+.ad-screen .countdown {
+  visibility: hidden;
+}
+
+/* ───── end card ───── */
+
+.ad-end {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.ad-end .logo-tiles .logo-tile {
+  width: 58px;
+  height: 58px;
+  font-size: 34px;
+}
+
+.ad-end h1 {
+  margin: 0;
+  font-size: 50px;
+  line-height: 1.05;
+}
+
+.ad-end .byline {
+  font-size: 24px;
+  margin-top: -10px;
+}
+
+.ad-url {
+  background: var(--sticky);
+  border: 2.5px solid var(--ink);
+  border-radius: var(--wobbly);
+  padding: 14px 26px 10px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 36px;
+  line-height: 1.15;
+  white-space: pre-line;
+  box-shadow: 4px 6px 0 rgba(31, 26, 23, 0.85);
+  transform: rotate(-2deg);
+}
+
+.ad-pitch {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.ad-free {
+  font-size: 22px;
+  color: var(--muted);
+  margin-top: -12px;
+}
+
+.ad-sprite {
+  position: absolute;
+  bottom: 0;
+}
+
+/* ───── Ma'am's callout ───── */
+
+.ad-callout {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 345px;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  transform-origin: 20% 100%;
+  z-index: 5;
+}
+
+.ad-callout-avatar {
+  flex: none;
+  width: 96px;
+  height: 108px;
+  filter: drop-shadow(0 6px 8px rgba(31, 26, 23, 0.35));
+}
+
+.ad-callout-bubble {
+  position: relative;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: var(--wobbly);
+  padding: 14px 18px 12px;
+  font-family: 'Kalam', cursive;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.15;
+  box-shadow: 5px 7px 0 rgba(31, 26, 23, 0.85);
+  margin-bottom: 34px;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "barely-passing-manual-ad",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Promo videos for the game, made with Remotion. Renders the game's real components from ../src.",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "./render.sh",
+    "still": "remotion still"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.542",
+    "@remotion/google-fonts": "4.0.542",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.542"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "typescript": "5.9.3",
+    "webpack": "5.105.0"
+  }
+}
