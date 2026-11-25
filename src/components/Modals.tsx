@@ -117,7 +117,7 @@ export function ResultModal({
       <div className="share-card">
         <span className="pitch">Want to test your salt analysis?</span>
         <div className="share-title">
-          <b>{puzzle ? `The Anti-Chemist #${puzzle}` : 'The Anti-Chemist (practice)'}</b>
+          <b>{puzzle ? `Saltdle #${puzzle}` : 'Saltdle (practice)'}</b>
           <span className="marker score">{scoreLabel(game)}</span>
         </div>
         <div className="share-grid">

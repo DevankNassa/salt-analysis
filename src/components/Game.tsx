@@ -265,8 +265,8 @@ export function GameBoard(props: GameProps) {
           )}
         </div>
         <button className="title-btn" onClick={onHome} aria-label="Home">
-          <h1 className="marker">The Barely Passing Manual</h1>
-          <span className="byline">by the Anti-Chemist</span>
+          <h1 className="marker">Saltdle</h1>
+          <span className="byline">The Barely Passing Manual, by the Anti-Chemist</span>
         </button>
         <div className="head-right">
           <button className="pill square" onClick={onManual} aria-label="How to play">

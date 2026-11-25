@@ -38,7 +38,7 @@ export async function sendFeedback(f: Feedback, context: string | null): Promise
   if (!KEY) throw new Error('Feedback is not set up yet.');
   const fields: Record<string, string> = {
     access_key: KEY,
-    subject: `[Barely Passing Manual] ${f.kind === 'mistake' ? 'Mistake report' : 'Suggestion'}`,
+    subject: `[Saltdle] ${f.kind === 'mistake' ? 'Mistake report' : 'Suggestion'}`,
     from_name: f.name || 'A student',
     ...(f.email && { email: f.email, replyto: f.email }),
     type: f.kind,

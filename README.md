@@ -1,4 +1,4 @@
-# The Barely Passing Manual by the Anti-Chemist
+# Saltdle: The Barely Passing Manual by the Anti-Chemist
 
 *Want to test your salt analysis?* A daily, Wordle-style puzzle built on the CBSE Class 12
 chemistry practical: identify the anion and cation of an unknown salt by running the tests in

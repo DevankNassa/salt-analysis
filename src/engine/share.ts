@@ -5,7 +5,7 @@ export function scoreLabel(s: GameState): string {
 }
 
 export function shareText(s: GameState, puzzle: number | null, url: string): string {
-  const title = puzzle ? `The Anti-Chemist #${puzzle}` : 'The Anti-Chemist (practice)';
+  const title = puzzle ? `Saltdle #${puzzle}` : 'Saltdle (practice)';
   const lines = grid(s).map((l) => `${l.label.padEnd(6, ' ')} ${l.squares.join('')}`);
   return ['Want to test your salt analysis? 🧪', `${title} — ${scoreLabel(s)}`, ...lines, url].join('\n');
 }

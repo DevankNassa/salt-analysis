@@ -28,8 +28,8 @@ export function Home({
     <div className="home">
       <LogoTiles />
       <div className="home-title">
-        <h1 className="marker">The Barely Passing Manual</h1>
-        <span className="byline">by the Anti-Chemist</span>
+        <h1 className="marker">Saltdle</h1>
+        <span className="byline">The Barely Passing Manual, by the Anti-Chemist</span>
       </div>
       <p className="home-pitch">Want to test your salt analysis?</p>
       <div className="home-buttons">

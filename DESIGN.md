@@ -1,4 +1,4 @@
-# The Barely Passing Manual by the Anti-Chemist — Design Doc
+# Saltdle (The Barely Passing Manual by the Anti-Chemist) — Design Doc
 
 > Status: **Draft v0.2** · Owner: Devank · Last updated: 2026-10-25
 > Tagline / share hook: **"Want to test your salt analysis?"**
@@ -21,6 +21,7 @@
 | D10 | Wordle-style scoring: **6 strikes**, score = strikes used, 6th strike = thrown out (X/6) | 2026-10-25 |
 | D11 | Teacher is a woman (students call her "Ma'am"); English only | 2026-10-25 |
 | D12 | Hosted on GitHub Pages for now | 2026-10-25 |
+| D13 | Name: **Saltdle** (Wordle-style "-dle" name, clear in share cards); "The Barely Passing Manual by the Anti-Chemist" kept as the tagline and the in-game manual | 2026-11-26 |
 
 ---
 
@@ -135,7 +136,7 @@ Rules:
 - **Share card** (no spoilers):
   ```
   Want to test your salt analysis? 🧪
-  The Anti-Chemist #142 — 2/6
+  Saltdle #142 — 2/6
   Prelim ⬜⬜
   Anion  ⬜🟩🟩
   Cation ⬜⬜⬜🟩🟥🟩
