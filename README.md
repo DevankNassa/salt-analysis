@@ -38,3 +38,10 @@ The in-game feedback form sends submissions to your email through [Web3Forms](ht
 Get an access key there with your email, then add it in the repo under
 **Settings → Secrets and variables → Actions → Variables** as `WEB3FORMS_KEY`, and re-run the deploy.
 For local dev, put `VITE_WEB3FORMS_KEY=...` in `.env.local`. Without a key the form shows but can't send.
+
+### Visitor stats
+
+Visits and game events are counted with [GoatCounter](https://www.goatcounter.com) (free, cookieless).
+Add your site code (the `xyz` in `xyz.goatcounter.com`) as the repo variable `GOATCOUNTER_CODE` and re-run the deploy.
+Nothing is loaded or sent without it, so local dev isn't counted. Besides page views, the dashboard shows these events:
+`daily-start`, `daily-won`, `daily-lost`, `practice-start`, `practice-won`, `practice-lost`, `share`, `salt-chart`.

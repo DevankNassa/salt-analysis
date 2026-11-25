@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AntiChemist } from './AntiChemist';
 import { LegendExamples } from './Tiles';
+import { track } from '../engine/analytics';
 
 const PAGES = 3;
 
@@ -81,7 +82,7 @@ export function Manual({ backLabel, onBack, onDone }: { backLabel: string; onBac
           <h2 className="marker">Reading the tiles</h2>
           <span>Every test is one row: experiment, observation, inference.</span>
           <LegendExamples />
-          <a className="scrawl study-link" href="./salt-chart.html" target="_blank" rel="noopener">
+          <a className="scrawl study-link" href="./salt-chart.html" target="_blank" rel="noopener" onClick={() => track('salt-chart')}>
             Want to study first? My full salt chart: every test, every salt →
           </a>
           <PageButtons onBack={prev} onNext={next} next="Open the lab" />

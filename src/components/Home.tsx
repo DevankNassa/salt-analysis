@@ -2,6 +2,7 @@ import type { GameState } from '../engine/game';
 import type { Stats } from '../engine/storage';
 import { Countdown, StatRow } from './Modals';
 import { LogoTiles } from './Tiles';
+import { track } from '../engine/analytics';
 
 export function Home({
   puzzle,
@@ -43,7 +44,7 @@ export function Home({
           How to play: open the manual
         </button>
         <div className="chart-callout">
-          <a className="btn round" href="./salt-chart.html" target="_blank" rel="noopener">
+          <a className="btn round" href="./salt-chart.html" target="_blank" rel="noopener" onClick={() => track('salt-chart')}>
             Study the salt chart
           </a>
           <span className="pencil-note">

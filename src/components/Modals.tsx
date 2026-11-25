@@ -4,6 +4,7 @@ import { MAX_STRIKES, grid, type GameState } from '../engine/game';
 import { feedbackEnabled, gameContext, sendFeedback, type FeedbackKind } from '../engine/feedback';
 import { msUntilTomorrow } from '../engine/daily';
 import { teacherLine } from '../engine/lines';
+import { track } from '../engine/analytics';
 import { scoreLabel, share, shareText } from '../engine/share';
 import type { Stats } from '../engine/storage';
 import { SQUARE_TONE } from '../engine/view';
@@ -107,6 +108,7 @@ export function ResultModal({
 
   const doShare = async () => {
     const r = await share(shareText(game, puzzle, url));
+    if (r !== 'failed') track('share');
     setShared(r === 'copied' ? 'Copied to clipboard!' : r === 'shared' ? 'Shared!' : 'Could not share');
   };
 

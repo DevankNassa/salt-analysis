@@ -3,6 +3,7 @@ import { GameBoard, GamePhone, type GameProps } from './components/Game';
 import { Home } from './components/Home';
 import { Manual } from './components/Manual';
 import { FeedbackModal, ResultModal, StatsModal } from './components/Modals';
+import { track } from './engine/analytics';
 import { dailySaltId, dayNumber, pool } from './engine/daily';
 import { newGame, reduce, type Action, type GameState, type Mode } from './engine/game';
 import {
@@ -60,10 +61,19 @@ export function App() {
     const prev = prevStatus.current[mode];
     prevStatus.current[mode] = game.status;
     if (prev === 'playing' && game.status !== 'playing') {
+      track(`${mode}-${game.status}`);
       const t = setTimeout(() => setModal('result'), 1400);
       return () => clearTimeout(t);
     }
   }, [mode, game.status]);
+
+  // Count a game as started on its first move (not on page load or reload mid-game).
+  const prevEvents = useRef({ daily: daily.eventCount, practice: practice.eventCount });
+  useEffect(() => {
+    const prev = prevEvents.current[mode];
+    prevEvents.current[mode] = game.eventCount;
+    if (prev === 0 && game.eventCount > 0) track(`${mode}-start`);
+  }, [mode, game.eventCount]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
